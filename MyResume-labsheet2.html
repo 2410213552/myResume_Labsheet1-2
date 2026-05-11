@@ -1,131 +1,392 @@
 <!DOCTYPE html>
-<html>
+<html style="scroll-behavior: smooth;">
 <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>My Resume</title>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&family=Source+Sans+3:wght@400;600&display=swap" rel="stylesheet">
+
+    <style>
+        :root {
+            --red: #800000;
+            --red-dark: #4d0000;
+            --red-light: #a83232;
+            --dark: #17171d;
+            --text: #1a1a2e;
+            --muted: #555;
+            --bg: #f8f5f2;
+            --white: #fff;
+            --border: #ddd;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Source Sans 3', Arial, sans-serif;
+            background-color: var(--bg);
+            color: var(--text);
+            line-height: 1.6;
+        }
+
+        /* ── NAVBAR ── */
+        nav {
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            background-color: var(--dark);
+            border-bottom: 3px solid var(--red);
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 0;
+        }
+
+        nav a {
+            color: #ccc;
+            text-decoration: none;
+            padding: 14px 20px;
+            font-size: 13px;
+            font-weight: 600;
+            letter-spacing: 0.08em;
+            text-transform: uppercase;
+            transition: color 0.2s, background 0.2s;
+            border-bottom: 3px solid transparent;
+            margin-bottom: -3px;
+        }
+
+        nav a:hover {
+            color: var(--white);
+            background-color: rgba(255,255,255,0.05);
+            border-bottom-color: var(--red-light);
+        }
+
+        /* ── CONTAINER ── */
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+            background-color: var(--white);
+            box-shadow: 0 4px 30px rgba(0,0,0,0.12);
+        }
+
+        /* ── HEADER ── */
+        header {
+            background: linear-gradient(135deg, var(--red-dark) 0%, var(--red) 60%, var(--red-light) 100%);
+            padding: 40px 40px 30px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        header::before {
+            content: '';
+            position: absolute;
+            top: -40px; right: -40px;
+            width: 200px; height: 200px;
+            border-radius: 50%;
+            background: rgba(255,255,255,0.07);
+        }
+
+        .header-inner {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            gap: 20px;
+        }
+
+        .personal-info h1 {
+            font-family: 'Playfair Display', Georgia, serif;
+            font-size: 32px;
+            color: var(--white);
+            line-height: 1.2;
+            margin-bottom: 12px;
+        }
+
+        .personal-info p {
+            color: rgba(255,255,255,0.88);
+            font-size: 14px;
+            line-height: 1.8;
+        }
+
+        .circle {
+            width: 160px;
+            height: 160px;
+            border-radius: 50%;
+            overflow: hidden;
+            border: 4px solid rgba(255,255,255,0.4);
+            flex-shrink: 0;
+        }
+
+        .circle img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        /* ── MAIN CONTENT ── */
+        main {
+            padding: 10px 40px 40px;
+        }
+
+        /* ── SECTIONS ── */
+        section {
+            margin-bottom: 36px;
+            scroll-margin-top: 60px;
+        }
+
+        section h2 {
+            font-family: 'Playfair Display', Georgia, serif;
+            color: var(--red-dark);
+            font-size: 22px;
+            border-bottom: 2px solid var(--red);
+            padding-bottom: 6px;
+            margin-bottom: 14px;
+            margin-top: 30px;
+        }
+
+        section h3 {
+            color: var(--text);
+            font-size: 16px;
+            font-weight: 600;
+            margin-bottom: 6px;
+        }
+
+        section p {
+            color: var(--muted);
+            font-size: 15px;
+        }
+
+        /* ── TABLES ── */
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-bottom: 15px;
+            font-size: 14px;
+        }
+
+        table, th, td {
+            border: 1px solid var(--border);
+        }
+
+        th, td {
+            padding: 10px 12px;
+            text-align: left;
+        }
+
+        th {
+            background-color: var(--red);
+            color: var(--white);
+            font-weight: 600;
+            letter-spacing: 0.03em;
+        }
+
+        tr:nth-child(even) td {
+            background-color: #fdf0ef;
+        }
+
+        /* ── LISTS ── */
+        ul {
+            list-style-type: disc;
+            padding-left: 22px;
+            color: var(--muted);
+            font-size: 15px;
+        }
+
+        ul li {
+            margin-bottom: 4px;
+        }
+
+        ul ul {
+            list-style-type: circle;
+            padding-left: 20px;
+            margin-top: 4px;
+        }
+
+        /* ── LINKS ── */
+        a {
+            color: var(--red);
+            text-decoration: none;
+            font-weight: 600;
+        }
+
+        a:hover {
+            text-decoration: underline;
+            color: var(--red-dark);
+        }
+
+        /* ── FOOTER ── */
+        footer {
+            background: linear-gradient(135deg, var(--red-dark) 0%, var(--red) 100%);
+            color: rgba(255,255,255,0.9);
+            padding: 24px 40px;
+            text-align: center;
+            font-size: 13px;
+            line-height: 1.9;
+        }
+
+        footer b {
+            color: var(--white);
+        }
+
+        footer p {
+            margin-bottom: 4px;
+        }
+
+        /* ── RESPONSIVE ── */
+        @media (max-width: 600px) {
+            .header-inner { flex-direction: column-reverse; align-items: flex-start; }
+            .circle { width: 110px; height: 110px; }
+            .personal-info h1 { font-size: 22px; }
+            main { padding: 10px 20px 30px; }
+            header { padding: 24px 20px; }
+            footer { padding: 18px 20px; }
+            nav a { padding: 12px 12px; font-size: 11px; }
+        }
+    </style>
 </head>
 
 <body>
 
-<h1>IBRAHIMRASHID ADAN ABDIGEY</h1>
-<p>Email: ibrahimrashidabdigey@gmail.com</p>
-<p>Phone: +90 5377953673</p>
-<p>Location: Turkey</p>
-<p>Nationality: Kenyan</p>
+<!-- NAVBAR -->
+<nav>
+    <a href="#objective">Objective</a>
+    <a href="#education">Education</a>
+    <a href="#skills">Skills</a>
+    <a href="#projects">Projects</a>
+    <a href="#certifications">Certifications</a>
+    <a href="#languages">Languages</a>
+    <a href="#hobbies">Hobbies</a>
+    <a href="#profiles">Profiles</a>
+</nav>
 
-<hr>
+<div class="container">
 
-<h2>Career Objective</h2>
-<p>
-Motivated and passionate web developer seeking opportunities to build modern
-and user-friendly websites while improving my programming skills.
-</p>
+    <!-- HEADER -->
+    <header>
+        <div class="header-inner">
+            <div class="personal-info">
+                <h1>IBRAHIMRASHID ADAN ABDIGEY</h1>
+                <p>📧 ibrahimrashidabdigey@gmail.com</p>
+                <p>📞 +90 5377953673</p>
+                <p>📍 Turkey</p>
+                <p>🌍 Nationality: Kenyan</p>
+            </div>
+            <div class="circle">
+                <img src="BABZ1111.jpg" alt="Profile Picture">
+            </div>
+        </div>
+    </header>
 
-<hr>
+    <!-- MAIN -->
+    <main>
 
-<h2>Education</h2>
-<table border="1" cellpadding="5">
-<tr>
-<th>Degree</th>
-<th>Institution</th>
-<th>Year</th>
-</tr>
+        <section id="objective">
+            <h2>Career Objective</h2>
+            <p>Motivated and passionate web developer seeking opportunities to build modern and user-friendly websites while improving my programming skills.</p>
+        </section>
 
-<tr>
-<td>Bachelor of Computer Engineering</td>
-<td>Karabuk University</td>
-<td>2024 - 2028</td>
-</tr>
+        <section id="education">
+            <h2>Education</h2>
+            <table>
+                <tr>
+                    <th>Degree</th>
+                    <th>Institution</th>
+                    <th>Year</th>
+                </tr>
+                <tr>
+                    <td>Bachelor of Computer Engineering</td>
+                    <td>Karabuk University</td>
+                    <td>2024 – 2028</td>
+                </tr>
+                <tr>
+                    <td>High School</td>
+                    <td>Burduras Secondary School</td>
+                    <td>2019 – 2022</td>
+                </tr>
+            </table>
+        </section>
 
-<tr>
-<td>High School</td>
-<td>Burduras Secondary School</td>
-<td>2019 - 2022</td>
-</tr>
-</table>
+        <section id="skills">
+            <h2>Skills</h2>
+            <ul>
+                <li>HTML</li>
+                <li>Responsive Web Design</li>
+                <li>Basic Cybersecurity Concepts</li>
+                <li>Web Development Fundamentals</li>
+                <li>Problem Solving</li>
+            </ul>
+        </section>
 
-<hr>
+        <section id="projects">
+            <h2>Projects</h2>
+            <h3>Responsive Web Page Project</h3>
+            <p>Participated in building a responsive web page as part of the FreeCodeCamp Responsive Web Design curriculum.</p>
+            <br>
+            <ul>
+                <li>Used HTML to structure webpage content</li>
+                <li>Learned responsive design principles</li>
+                <li>Practiced real-world webpage layout development</li>
+            </ul>
+        </section>
 
-<h2>Skills</h2>
-<ul>
-<li>HTML</li>
-<li>Responsive Web Design</li>
-<li>Basic Cybersecurity Concepts</li>
-<li>Web Development Fundamentals</li>
-<li>Problem Solving</li>
-</ul>
+        <section id="certifications">
+            <h2>Certifications</h2>
+            <ul>
+                <li>Google Cybersecurity Certificate – Google</li>
+                <li>Google Cybersecurity Analyst – Google</li>
+                <li>Introduction to HTML – Coursera</li>
+                <li>Responsive Web Design – FreeCodeCamp</li>
+            </ul>
+        </section>
 
-<hr>
-<h2>Projects</h2>
+        <section id="languages">
+            <h2>Languages</h2>
+            <ul>
+                <li>English</li>
+                <li>Turkish</li>
+                <li>Swahili</li>
+                <li>Somali</li>
+                <li>Oromo</li>
+            </ul>
+        </section>
 
-<h3>Responsive Web Page Project</h3>
-<p>
-Participated in building a responsive web page as part of the 
-FreeCodeCamp Responsive Web Design curriculum.
-</p>
+        <section id="hobbies">
+            <h2>Hobbies</h2>
+            <ul>
+                <li>Reading</li>
+                <li>Traveling</li>
+                <li>Sports:
+                    <ul>
+                        <li>Football</li>
+                        <li>Basketball</li>
+                        <li>Volleyball</li>
+                    </ul>
+                </li>
+                <li>Listening to Music</li>
+            </ul>
+        </section>
 
-<ul>
-<li>Used HTML to structure webpage content</li>
-<li>Learned responsive design principles</li>
-<li>Practiced real-world webpage layout development</li>
-</ul>
-<h2>Certifications</h2>
+        <section id="profiles">
+            <h2>Profiles</h2>
+            <ul>
+                <li><a href="https://github.com/2410213552/Ibrahimrashid-Adan-Abdigey-2410213552" target="_blank">GitHub</a></li>
+                <li><a href="https://www.linkedin.com/in/ibrahimrashid-adan-abdigey-6346b53aa/" target="_blank">LinkedIn</a></li>
+                <li><a href="https://freecodecamp.org/certification/IBRAHIMRASHIDADANABDIGEY/responsive-web-design" target="_blank">FreeCodeCamp</a></li>
+            </ul>
+        </section>
 
-<ul>
-<li>Google Cybersecurity Certificate – Google</li>
-<li>Google Cybersecurity Analyst – Google</li>
-<li>Introduction to HTML – Coursera</li>
-<li>Responsive Web Design – FreeCodeCamp</li>
-</ul>
+    </main>
 
-<hr>
+    <!-- FOOTER -->
+    <footer>
+        <p>📧 ibrahimrashidabdigey@gmail.com &nbsp;|&nbsp; 📞 +90 5377953673</p>
+        <p><b>LinkedIn:</b> linkedin.com/in/ibrahimrashid-adan-abdigey-6346b53aa/</p>
+        <p><b>Last Updated:</b> 2026</p>
+    </footer>
 
-<h2>Languages</h2>
-<ul>
-<li>English</li>
-<li>Turkish</li>
-<li>Swahili</li>
-<li>Somali</li>
-<li>Oromo</li>
-</ul>
-
-<hr>
-
-<h2>Hobbies</h2>
-
-<ul>
-    <li>Reading</li>
-    <li>Traveling</li>
-    
-    <li>Sports:<ul>
-    <li>Football</li>
-    <li>Basketball</li>
-    <li>Volleyball</li>
-</ul>
-    </li>
-
-    <li>Listening to Music</li>
-</ul>
-
-<section>
-<h2>Profiles</h2>
-
-<ul>
-<li><a href="https://github.com/2410213552/Ibrahimrashid-Adan-Abdigey-2410213552">GitHub</a></li>
-<li><a href="https://www.linkedin.com/in/ibrahimrashid-adan-abdigey-6346b53aa/">LinkedIn</a></li>
-<li><a href="https://freecodecamp.org/certification/IBRAHIMRASHIDADANABDIGEY/responsive-web-design">FreeCodeCamp</a></li>
-</ul>
-
-</section>
-
-<section>
-<footer>
-<hr>
-<p>Email: ibrahimrashidabdigey@gmail.com | Phone: +90 5377953673</p>
-<p>LinkedIn: https://www.linkedin.com/in/ibrahimrashid-adan-abdigey-6346b53aa/</p>
-<p>Last Updated: 2026</p>
-</footer>
-</section>
+</div>
 
 </body>
 </html>
-
